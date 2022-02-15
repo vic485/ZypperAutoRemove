@@ -11,21 +11,17 @@ var packageCommand = new ProcessStartInfo
 };
 
 var packageCmd = Process.Start(packageCommand);
-var unneededPackages = new List<string>();
 
-string? line;
-while ((line = packageCmd?.StandardOutput.ReadLine()) != null)
-{
-    if (!line.StartsWith("i"))
-        continue;
-
-    var parts = line.Split("|");
-    unneededPackages.Add(parts[2].Trim());
-}
+var output = packageCmd?.StandardOutput.ReadToEnd();
+var unneededPackages = (from line in output?.Split("\n")!
+    where line.StartsWith("i")
+    select line.Split("|")
+    into parts
+    select parts[2].Trim()).ToList();
 
 if (unneededPackages.Count == 0)
 {
-    Console.WriteLine("何もすることがありません。"); // Nothing to do.
+    Console.WriteLine(output); // Nothing to do.
     Environment.Exit(0);
 }
 
