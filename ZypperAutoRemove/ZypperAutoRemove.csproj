@@ -8,6 +8,7 @@
         <RuntimeIdentifier>opensuse-x64</RuntimeIdentifier>
         <PublishSingleFile>true</PublishSingleFile>
         <PublishTrimmed>true</PublishTrimmed>
+        <AssemblyName>zypper-autoremove</AssemblyName>
     </PropertyGroup>
 
 </Project>

@@ -21,7 +21,7 @@ var unneededPackages = (from line in output?.Split("\n")!
 
 if (unneededPackages.Count == 0)
 {
-    Console.WriteLine(output); // Nothing to do.
+    Console.Write(output); // Nothing to do.
     Environment.Exit(0);
 }
 
